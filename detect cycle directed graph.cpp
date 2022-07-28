@@ -6,30 +6,30 @@ int graph[100][100];
 int n;
 
 bool dfs( int node , bool *visited , bool *inloop , int &prev ){
-	visited[node] = 1;
-	inloop[node] = 1;
+    visited[node] = 1;
+    inloop[node] = 1;
     for(int i=0;i<n;i++){
-	    if( graph[node][i]){  	
-	      	if(!visited[i]){
-	      		if(dfs( i , visited , inloop , prev)){
+        if( graph[node][i]){  	
+	    if(!visited[i]){
+	      	if(dfs( i , visited , inloop , prev)){
 	      	 	 	
-				    if(i==prev)
-	      	 	 	    cout<<i<<" " , prev=-1;
-	      	 	    else if (prev!=-1)
-					    cout<<i<<" ";
+		    if(i==prev)
+	      	        cout<<i<<" " , prev=-1;
+	      	    else if (prev!=-1)
+			cout<<i<<" ";
 						    
-	      	 	    return true;
-	      	    }
-			}
-			else if ( inloop[i] ){
-				    prev=i;
-			 	    return true;
-		    }  
+	      	    return true;
+	       	}
 	    }
+	    else if ( inloop[i] ){
+	        prev=i;
+		return true;
+            }  
+	}
     }
 
     inloop[node]=0;  
-	return false;			 
+    return false;			 
 }
 
 bool checkCycle (bool *visited){
